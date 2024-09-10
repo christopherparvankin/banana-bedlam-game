@@ -1,0 +1,29 @@
+.main { 
+    display:flex;
+    width:100vw;
+    margin-top: 10vh;
+    height: 90vh; 
+    overflow: hidden;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;   
+    background-color: #202125;
+    outline: none;
+}
+
+.main:focus{
+    outline:none
+}
+
+.play-icon {
+    transform: scale(4);
+    color: aliceblue;
+    margin-bottom: 15vh;
+    transition: color 0.3s ease, transform 2s ease;
+    color: white; 
+ 
+}
+.play-icon:hover {
+    transform: scale(6);
+    color: #9ed8f9;
+}
+
