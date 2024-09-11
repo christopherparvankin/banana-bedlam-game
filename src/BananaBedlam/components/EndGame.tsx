@@ -127,7 +127,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
             async function getRecords() {
             setLoading(true);
               try {
-                const response = await fetch(`http://18.117.163.219:5050/record/`);
+                const response = await fetch(`http://18.117.163.219:3000/record/`);
                 
                 if (!response.ok) {
                   const message = `An error occurred: ${response.statusText}`;
@@ -160,7 +160,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 // scoreID = resolved[0]._id;
                 if (context.score){
                 var newPlayer:DataProps = { userName: context.userName.current, score: Number(context.score.current)};
-                // newPlayer.score = newPlayer.score;
+                newPlayer.score = newPlayer.score;
               
                 scoreboard.push(newPlayer); 
                
