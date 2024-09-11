@@ -24,7 +24,7 @@ function Navigator({ handleShaun, s_bool }) {
         <div className='right1'>
         <Link to="https://chrisparvankin.com/#projects"> Projects</Link>
         <Link to="https://chrisparvankin.com/#fun"> Fun</Link>
-        <Link to="https://chrisparvankin.com/#game"> Nanner</Link>
+      
          
 
         </div>
