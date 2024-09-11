@@ -7,7 +7,6 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { GameContext, useGameContext, resetContext, ContextProps} from "./Context";
 import {InputManager, createInputManager} from "./InputManager";
 import {songs, park, end} from "../sounds/sounds"
-import nanner from "../images/banana.png"
 
 interface WhipProps{
   inputManager: React.MutableRefObject<InputManager>
@@ -23,8 +22,11 @@ const WhichGame = ({inputManager}: WhipProps) => {
 
    useEffect(() => {
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       audio3Ref.current.pause();
+       // eslint-disable-next-line react-hooks/exhaustive-deps
       audio1Ref.current.pause();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       audio2Ref.current.pause();
     };
   }, []);
@@ -32,7 +34,7 @@ const WhichGame = ({inputManager}: WhipProps) => {
   switch(context.gameState){
     case 0: 
       return <StartGame inputManager={inputManager} />
-      break; 
+      
     case 1: 
     
       if (inputManager.current.interacted){
@@ -42,7 +44,7 @@ const WhichGame = ({inputManager}: WhipProps) => {
       
       return <MidGame inputManager={inputManager}/>
       
-      break; 
+      
     case 2: 
     console.log()
     if (inputManager.current.interacted){audio3Ref.current.pause();
@@ -53,10 +55,10 @@ const WhichGame = ({inputManager}: WhipProps) => {
       audio2Ref.current.play();}
       return <EndGame inputManager = {inputManager} />
 
-    break;
+
     default: 
     return <StartGame inputManager={inputManager} />
-    break;
+    
   }
 }
 
@@ -77,6 +79,7 @@ const Game = () => {
 
       inputManager.del_func();
       resetContext(c);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }}, []
   )
   return (

@@ -1,17 +1,8 @@
-import { GameContext, useGameContext, ContextProps } from "./Context";
+import {  useGameContext } from "./Context";
 import { InputManager } from "./InputManager";
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/StartGame.css";
 import batman from "../sounds/batman_intro.mp3";
-import { BrandingWatermarkRounded } from "@mui/icons-material";
-const p1 = "Enter Name to Begin: ";
-const p2 = "A long time ago the fire nation attacked";
-const p3 = "Blah blah blah";
-
-const playSound = () => {
-    const audio = new Audio(batman);
-    audio.play();
-};
 
 const LoadPrompts: React.FC<{ inputManager: React.MutableRefObject<InputManager> }> = ({ inputManager }) => {
     const [prompt, switchPrompt] = useState(1); 
@@ -31,9 +22,9 @@ const LoadPrompts: React.FC<{ inputManager: React.MutableRefObject<InputManager>
     
     return (
         <div className="text"> 
-            {(prompt == 1) && <MidPrompt switchPrompt={switchPrompt} />}
-            {(prompt == 2) && <FinalPromptTwo switchPrompt={switchPrompt} inputManager={inputManager}/>}
-            {(prompt == 3) && <Final2 switchPrompt={switchPrompt} />}
+            {(prompt === 1) && <MidPrompt switchPrompt={switchPrompt} />}
+            {(prompt === 2) && <FinalPromptTwo switchPrompt={switchPrompt} inputManager={inputManager}/>}
+            {(prompt === 3) && <Final2 switchPrompt={switchPrompt} />}
         </div>
     );
 }
@@ -51,7 +42,7 @@ const MidPrompt: React.FC<{ switchPrompt: (value: React.SetStateAction<number>) 
 
     const timedPrompt = async (text: string) => {
         setCurrentText(text);
-        if (text == p4) {
+        if (text === p4) {
             switchPrompt(2);
         }
         await new Promise((resolve) => setTimeout(resolve, 4000));
@@ -67,6 +58,8 @@ const MidPrompt: React.FC<{ switchPrompt: (value: React.SetStateAction<number>) 
             }
         };
         runSequence();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     return (
@@ -108,6 +101,8 @@ const Final2: React.FC<{ switchPrompt: (value: React.SetStateAction<number>) => 
             await timedPrompt(p1);
         };
         runSequence();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     return (
@@ -135,10 +130,10 @@ const FinalPromptTwo: React.FC<{ switchPrompt: (value: React.SetStateAction<numb
         }
     }, []);
 
-    const context = useGameContext();
+    // const context = useGameContext();
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
             inputManager.current.interacted = true;
             switchPrompt(3);
         }

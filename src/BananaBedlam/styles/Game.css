@@ -20,7 +20,7 @@
     margin-bottom: 15vh;
     transition: color 0.3s ease, transform 2s ease;
     color: white; 
- 
+    
 }
 .play-icon:hover {
     transform: scale(6);

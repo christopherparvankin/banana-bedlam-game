@@ -1,11 +1,10 @@
 import { Stage } from "@pixi/react";
-import { InputManager } from "./InputManager";
-import React, { useRef, useEffect, useState} from "react";
+import  { useRef, useEffect, useState} from "react";
 import "../styles/Midgame.css";
 import Archibald from "./Archibald";
 import Nanners from "./Nanners";
 import Scoreboard from "./Scoreboard";
-import { useGameContext, ContextProps, GameContext } from "./Context";
+import { useGameContext} from "./Context";
 import Pellets from "./Pellets";
 
 

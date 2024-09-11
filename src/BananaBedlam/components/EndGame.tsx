@@ -32,13 +32,13 @@ const SecondaryPrompt:React.FC<{ inputManager:React.MutableRefObject<InputManage
 
     const handleKeyInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (context.userName)
-        {if (e.key == "Enter" ){
+        {if (e.key === "Enter" ){
             resetContext(context);
             inputManager.current.x = 0; 
             inputManager.current.y = 100; 
             context.switchState(1);
         }
-        else if (e.key == " "){
+        else if (e.key === " "){
             changePrompt(2);
         }}
     }
@@ -76,7 +76,7 @@ const InitialPrompt:React.FC<{inputManager:React.MutableRefObject<InputManager>,
   }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if  (e.target.value != ""){
+    if  (e.target.value !== ""){
             setBool(true);
             if (context.userName){
                 context.userName.current = e.target.value;
@@ -88,13 +88,13 @@ const InitialPrompt:React.FC<{inputManager:React.MutableRefObject<InputManager>,
     const handleKeyInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
         if (context.userName)
-        {if (e.key == "Enter" && context.userName.current == ""){
+        {if (e.key === "Enter" && context.userName.current === ""){
             resetContext(context);
             inputManager.current.x = 0; 
             inputManager.current.y = 100; 
             context.switchState(1);
         }
-        else if (e.key == "Enter"){
+        else if (e.key === "Enter"){
             changePrompt(2);
         }}
     }
@@ -156,11 +156,11 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
 
                 scoreboard = resolved[0].database;
                 
-
-                scoreID = resolved[0]._id;
+                
+                // scoreID = resolved[0]._id;
                 if (context.score){
                 var newPlayer:DataProps = { userName: context.userName.current, score: Number(context.score.current)};
-                newPlayer.score = newPlayer.score;
+                // newPlayer.score = newPlayer.score;
               
                 scoreboard.push(newPlayer); 
                
@@ -190,11 +190,11 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
         }
             )
             .catch(()=>{console.log("error in retrieving scoreboard")}).finally(()=>{setLoading(false)});
-            
+            // eslint-disable-next-line react-hooks/exhaustive-deps
           }, []);
           
     const handleKeyDown = (inputManager:React.MutableRefObject<InputManager>, e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key == "Enter"){
+    if (e.key === "Enter"){
         inputManager.current.x = 0; 
         inputManager.current.y = 100; 
         resetContext(context);
@@ -225,23 +225,23 @@ const EndGame:React.FC<EndgameProps> = ({inputManager}) => {
     var context = useGameContext(); 
     const [promptValue, switchPromptValue] = useState(0);
     useEffect(()=>
-    {if (context.userName && context.userName.current != ""){
+    {if (context.userName && context.userName.current !== ""){
 
         switchPromptValue(1);
-        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }}, []);
 
 
     switch (promptValue){
         case 0: 
         return <InitialPrompt inputManager={inputManager} changePrompt={switchPromptValue}/>
-        break 
+       
         case 1: 
         return <SecondaryPrompt inputManager={inputManager} changePrompt={switchPromptValue}/> 
-        break;
+      
         case 2: 
         return <Scoreboard inputManager={inputManager} /> 
-        break;
+     
         default:
         return <Scoreboard inputManager={inputManager} /> 
     }

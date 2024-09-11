@@ -1,13 +1,11 @@
-import React from 'react';
-import { Link, Element } from 'react-scroll';
-
+import "./App.css"
 import Navigator from "./Navigator";
 import Game from "./BananaBedlam/components/Game";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div className="apl">
       <Router>
         <div className='nav_wrapper'>
           <Navigator />   

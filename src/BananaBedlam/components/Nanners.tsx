@@ -1,7 +1,5 @@
-import { InputManager, KeyCode, moveKeys } from "./InputManager";
 import React, { useRef, useState } from "react";
-import { Sprite, useTick, Container, _ReactPixi } from '@pixi/react';
-import b from "src/BananaBedlam/images/le_monke.png";
+import { Sprite, useTick, Container} from '@pixi/react';
 import { ContextProps, heartList} from "./Context";
 import bp from "../images/banana.png";
 import ouch from "../sounds/ouch.mp3";
@@ -41,7 +39,7 @@ const Nanners:React.FC<NannerProps> = ({context}) => {
                     var context_num = Number(context.score.current);
                 context_num +=1; 
                 var context_string = context_num.toString(); 
-                while (context_string.length != 3){
+                while (context_string.length !== 3){
                     context_string = "0" + context_string
                 }
                 
@@ -61,7 +59,7 @@ const Nanners:React.FC<NannerProps> = ({context}) => {
 
             heartCount.current -= 1;
             context.heart_list = heartList(heartCount.current);
-            if (heartCount.current == 0){
+            if (heartCount.current === 0){
                 context.gameState = 2;
         
              

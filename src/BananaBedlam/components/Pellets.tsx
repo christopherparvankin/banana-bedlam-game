@@ -1,4 +1,4 @@
-import { InputManager, KeyCode, moveKeys } from "./InputManager";
+import { InputManager} from "./InputManager";
 import React, { useRef, useState } from "react";
 import { useTick, Container, Graphics } from '@pixi/react';
 import { Graphics as PIXIGraphics } from 'pixi.js'; // Import the Graphics type from pixi.js
@@ -14,7 +14,7 @@ const handlePellet = (pellet: React.JSX.Element, d: number, context: ContextProp
     if (context.pellet_key_list){
     for (const pellet_key of context.pellet_key_list.current) {
         
-        if (pellet_key == pellet.props.ckey) {
+        if (pellet_key === pellet.props.ckey) {
             context.pellet_key_list.current = context.pellet_key_list.current.filter((pellet_key:number) => {
                 if (pellet_key === pellet.props.ckey) {
                     return false;
@@ -95,8 +95,7 @@ const Pellets: React.FC<PelletProps> = ({ inputManager, context}) => {
 
             time_since_last_shot = 0;
             shots += 1;
-            // const sound = new Audio(FARTSOUND);
-            // sound.play();
+
         } else {
             time_since_last_shot += delta;
         }

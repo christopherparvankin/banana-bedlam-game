@@ -1,5 +1,5 @@
 import React from "react";
-import { Graphics } from "@pixi/react";
+
 
 const ScoreBackground:React.FC = () => {
  

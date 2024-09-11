@@ -1,4 +1,3 @@
-import {ContextProps} from "../components/Context";
 
 export type KeyCode =
   | "KeyA"
