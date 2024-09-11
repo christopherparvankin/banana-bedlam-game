@@ -17,14 +17,14 @@ function Navigator({ handleShaun, s_bool }) {
       </div>
       <div className="middle">
         <div className='left1'> 
-        <Link to="/"> Home</Link>
-        <Link to="/about"> About</Link>
+        <Link to="https://chrisparvankin.com"> Home</Link>
+        <Link to="https://chrisparvankin.com/#about"> About</Link>
         </div>
         
         <div className='right1'>
-        <Link to="/projects"> Projects</Link>
-        <Link to="/fun"> Fun</Link>
-        <Link to="/Game"> Nanner</Link>
+        <Link to="https://chrisparvankin.com/#projects"> Projects</Link>
+        <Link to="https://chrisparvankin.com/#fun"> Fun</Link>
+        <Link to="https://chrisparvankin.com/#game"> Nanner</Link>
          
 
         </div>

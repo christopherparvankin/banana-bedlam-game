@@ -127,7 +127,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
             async function getRecords() {
             setLoading(true);
               try {
-                const response = await fetch(`http://18.117.163.219:3000/record/`);
+                const response = await fetch(`https://18.117.163.219:3000/record/`);
                 
                 if (!response.ok) {
                   const message = `An error occurred: ${response.statusText}`;
