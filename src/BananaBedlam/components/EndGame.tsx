@@ -174,7 +174,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 setItems(s);
          
 
-                fetch(`http://18.117.163.219:5050/record/${scoreID}`, {
+                fetch(`https://18.117.163.219:5050/record/${scoreID}`, {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json',
