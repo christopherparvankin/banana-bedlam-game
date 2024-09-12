@@ -1,7 +1,7 @@
 import { InputManager} from "./InputManager";
 import React, { useRef, useState } from "react";
 import { useTick, Container, Graphics } from '@pixi/react';
-import { Graphics as PIXIGraphics } from 'pixi.js'; // Import the Graphics type from pixi.js
+import { Graphics as PIXIGraphics } from 'pixi.js';
 import { ContextProps } from "./Context";
 import fart from "../sounds/fart.mp3";
 
@@ -82,8 +82,8 @@ const Pellets: React.FC<PelletProps> = ({ inputManager, context}) => {
                 y={inputManager.current.y + 20}
                 draw={(g: PIXIGraphics) => {
                     g.clear();
-                    g.beginFill(0xFF0000); // Red color
-                    g.drawCircle(0, 0, 10); // Adjust radius as needed
+                    g.beginFill(0xFF0000); 
+                    g.drawCircle(0, 0, 10); 
                     g.endFill();
                 }}
             />

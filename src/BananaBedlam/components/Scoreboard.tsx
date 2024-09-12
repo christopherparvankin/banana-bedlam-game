@@ -3,7 +3,7 @@ import {  Container, Text, useTick} from "@pixi/react";
 
 import { TextStyle } from "pixi.js";
 import { ContextProps } from "./Context";
-import "../styles/Scoreboard.css"; // Import your CSS file for styles
+import "../styles/Scoreboard.css"; 
 
 
 interface ScoreboardProps {

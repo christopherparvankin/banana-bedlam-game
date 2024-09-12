@@ -130,7 +130,6 @@ const FinalPromptTwo: React.FC<{ switchPrompt: (value: React.SetStateAction<numb
         }
     }, []);
 
-    // const context = useGameContext();
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === "Enter") {

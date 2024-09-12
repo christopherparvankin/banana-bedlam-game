@@ -157,10 +157,10 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 scoreboard = resolved[0].database;
                 
                 
-                // scoreID = resolved[0]._id;
+            
                 if (context.score){
                 var newPlayer:DataProps = { userName: context.userName.current, score: Number(context.score.current)};
-                // newPlayer.score = newPlayer.score;
+             
               
                 scoreboard.push(newPlayer); 
                

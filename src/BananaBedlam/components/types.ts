@@ -6,18 +6,18 @@ export default interface GCI {
     BULLET_VELOCITY: number;
     TIME_COUNT: number;
     TIME_DELTA: number;
-    bananas: any[]; // Adjust the type as necessary
+    bananas: any[]; 
     NUM_OF_HEARTS: number;
-    HEART_LIST: any[]; // Adjust the type as necessary
+    HEART_LIST: any[]; 
     SOUND_ON: boolean;
     BULLET_COUNT_NUM: string;
     running: boolean;
     START: boolean;
     ALT_SCREEN: boolean;
     prev_time: number;
-    bullets: any[]; // Adjust the type as necessary
+    bullets: any[]; 
     is_audio_playing: boolean;
-    cur_audio: any; // Adjust the type as necessary
+    cur_audio: any; 
     key_pressed: boolean;
     CUR_BULLETS: number;
     MAX_BULLETS: number;
