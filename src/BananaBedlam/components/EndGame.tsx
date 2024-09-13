@@ -127,7 +127,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
             async function getRecords() {
             setLoading(true);
               try {
-                const response = await fetch(`https://18.117.163.219:3000/record/`);
+                const response = await fetch(`https://backend.cparvy.lol/record/`);
                 
                 if (!response.ok) {
                   const message = `An error occurred: ${response.statusText}`;
@@ -174,7 +174,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 setItems(s);
          
 
-                fetch(`https://18.117.163.219:5050/record/${scoreID}`, {
+                fetch(`https://backend.cparvy.lol/record/${scoreID}`, {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json',
