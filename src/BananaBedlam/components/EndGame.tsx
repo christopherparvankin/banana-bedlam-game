@@ -8,10 +8,10 @@ interface EndgameProps{
 }
 
 interface DataProps{
-    userName:String, 
+    id: Number,
+    username:String, 
     score: Number
 }
-
 
 const SecondaryPrompt:React.FC<{ inputManager:React.MutableRefObject<InputManager>, changePrompt:React.Dispatch<React.SetStateAction<number>>}> = ({ inputManager, changePrompt})  => {
     var context = useGameContext();
@@ -124,27 +124,34 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
         if (inputRef.current) {
             inputRef.current.focus();
         }
-            async function getRecords() {
+        async function getRecords() {
             setLoading(true);
+            const maxRetries = 3; 
+            let attempt = 0;
+            
+            while (attempt < maxRetries) {
+              attempt++;
               try {
                 const response = await fetch(`https://backend.cparvy.lol/record/`);
-                
+          
                 if (!response.ok) {
                   const message = `An error occurred: ${response.statusText}`;
                   console.error(message);
-                  return;
+                } else {
+                  const data = await response.json();
+                  return data;
                 }
           
-                const data = await response.json();
-              
-                return data;
-                
               } catch (error) {
-         
-                console.error('An error occurred while fetching records:', error);
-                return null;  
+                console.error(`Attempt ${attempt} failed:`, error);
               }
+          
+              await new Promise((resolve) => setTimeout(resolve, 500));
             }
+            
+            console.error('Failed to fetch records after 3 attempts');
+            return null;
+          }
             
             
 
@@ -153,36 +160,43 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 if (resolved && context.userName){
                 
                 var scoreboard:Array<DataProps>;
-
-                scoreboard = resolved[0].database;
                 
+                scoreboard = resolved;
                 
-            
                 if (context.score){
-                var newPlayer:DataProps = { userName: context.userName.current, score: Number(context.score.current)};
-             
-              
+                // here id of 50 represents new plater
+                var newPlayer:DataProps = {id: 50, username: context.userName.current, score: Number(context.score.current)};
+                // now we need to loop through and 
                 scoreboard.push(newPlayer); 
                
               
-                var s = scoreboard.slice().sort((a:DataProps, b:DataProps) => (Number(b.score)) - (Number(a.score)))
-              
-              
-                s = s.slice(0,10);
+                var sc = scoreboard.slice().sort((a:DataProps, b:DataProps) => (Number(b.score)) - (Number(a.score)))
+                // for entry in scoreboard: 
+                
+                // now we have array of all of our new leaderboard scores
+                // we can check what the lowest score is, if it is newPlayer, then 
+                // we do not send fetch request, else, we send fetch request 
+                // of id of replacing entry, with the username and score of 
+                // newplayer
+                var s = sc.slice(0,10);
       
                 
                 setItems(s);
          
-
-                fetch(`https://backend.cparvy.lol/record/${scoreID}`, {
+                if (sc[10].id != 50){ 
+                console.log("in");
+                // in this case, the lowest score of the db must be replaced. 
+                var oldID = sc[10].id; 
+                fetch(`https://backend.cparvy.lol/record/`, {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({scores: s}),
+                            body: JSON.stringify({oldID: oldID, newPlayer:newPlayer.username, newScore:newPlayer.score}),
                             })
                             .then(response => response)
                             .catch(error => console.error('Error:', error));
+                        }
                 }
                 
 
@@ -207,7 +221,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
             <div className="text3">
                 <div style={{fontFamily:'fantasy'}}>SCOREBOARD</div>
                 {items.map((item:DataProps, index:any) => (
-                    <div className="scoreboard" key={index}>{`${index + 1}: ${item.userName} —  ${item.score}`}</div>
+                    <div className="scoreboard" key={index}>{`${index + 1}: ${item.username} —  ${item.score}`}</div>
                 ))}
                 <div style={{'fontSize':'3vw', 'fontStyle':'italic', fontFamily:'cursive'}}>PRESS ENTER TO TRY AGAIN</div>
             </div>
