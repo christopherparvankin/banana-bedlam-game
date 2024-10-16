@@ -113,7 +113,7 @@ const InitialPrompt:React.FC<{inputManager:React.MutableRefObject<InputManager>,
 }
 
 const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}> = ({ inputManager })  => {
-    var scoreID:any = null; 
+  
     
     const inputRef = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(true);
@@ -183,7 +183,7 @@ const Scoreboard: React.FC<{ inputManager: React.MutableRefObject<InputManager>}
                 
                 setItems(s);
          
-                if (sc[10].id != 50){ 
+                if (sc[10].id !== 50){ 
                 console.log("in");
                 // in this case, the lowest score of the db must be replaced. 
                 var oldID = sc[10].id; 
